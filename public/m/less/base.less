@@ -1,0 +1,112 @@
+/* 定义全局变量 */
+body{
+    background-color: #fff;
+}
+@mainColor: #006699;
+/* 如果MUI的版本是rem先加一个htmlfontsize */
+
+/* 公共的样式放到base.less里面 */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    /* 防止边框padding超出页面宽度出现滚动条 */
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+    /*一般移动端清除a的点击高亮  透明就表示去掉*/
+    -webkit-tap-highlight-color: transparent;
+}
+
+input {
+    border: none;
+    outline: none;
+    /*清除移动端默认的表单样式*/
+    -webkit-appearance: none;
+}
+
+img {
+    /* 解决图片3px的间距 */
+    vertical-align: middle;
+}
+body{
+    /* 因为头部和底部添加了固定定位占据了40px的高度 
+    所以给body添加一个上下padding让内容不要和头部底部重叠在一起 */
+    padding: 40px 0;
+}
+
+/* 头部公共样式 */
+#header{
+    background-color: @mainColor;
+    height: 40px;
+    position: fixed;
+    /* 定位一定要写定位值 left  top  left bottom */
+    left: 0px;
+    top: 0px;
+    z-index: 999;
+    /* 定位了之后没有宽度的设置宽度100% */
+    width: 100%;    
+    .fa-arrow-left{
+        position: absolute;
+        left: 15px;
+        top: 10px;
+        color:#fff;
+        font-size: 16px;
+    }
+    >form{
+        padding: 5px 45px;
+        /* 给父元素form添加一个padding让input挤到中间 */
+        >input{
+            background-color: #fff;
+            height: 30px;
+            /* 默认有一底部margin 去掉 */
+            margin-bottom: 0;
+            text-align:left;
+            font-size: 14px;
+        }
+    }
+    >h4{
+        font-size: 16px;
+        /* 去掉h4的margin不然会塌陷 */
+        margin: 0;
+        line-height: 40px;
+        text-align: center;
+        font-weight: normal;
+        color:#fff;
+    }
+    >.fa-search{
+        position: absolute;
+        right: 15px;
+        top: 12px;
+        color:#fff;
+        font-size: 16px;
+    }
+}
+
+/* 底部的公共样式 */
+#footer{
+    height: 40px;
+    background-color: @mainColor;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    z-index:999;
+    a{
+        color:#fff;
+        font-size: 14px;
+        display: block;
+        text-align: center;
+        padding: 6px 0;
+        span{
+            display: block;
+        }
+    }
+}
