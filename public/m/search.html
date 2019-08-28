@@ -6,13 +6,13 @@
     <!-- 1. 添加视口移动端 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>乐淘-商品分类</title>
+    <title>乐淘-商品搜索</title>
     <!-- 1. 引入字体图标的CSS文件 提供一些字体图标 -->
     <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.css">
     <!-- 2. 引入MUI的CSS文件 提供组件样式MUI布局 -->
     <link rel="stylesheet" href="./lib/mui/css/mui.css">
     <!-- 3. 引入分类的less文件 一定注意把 rel="stylesheet/less" 自写的样式 -->
-    <link rel="stylesheet/less" href="./less/category.less">
+    <link rel="stylesheet/less" href="./less/search.less">
     <!-- 4. 引入less.js的编译器文件 编译less文件 -->
     <script src="./lib/less/less.js"></script>
 </head>
@@ -21,24 +21,26 @@
     <!-- 头部区域 -->
     <header id="header">
         <a href="#" class="fa fa-arrow-left"></a>
-        <form action="#">
-            <input type="text" placeholder="请输入要搜索的商品">
-        </form>
+        <h4>乐淘-商品搜索</h4>
         <!-- 字体图标 search图标 -->
-        <a href="search.html" class="fa fa-search"></a>
     </header>
 
     <main id="main">
-        <div class="category-left">
-
+        <!-- 搜索表单 -->
+        <div class="search-form">
+            <form action="#">
+                <input type="search" class="search-input" placeholder="请输入要搜索的商品">
+                <button type="button" class="btn-search mui-btn mui-btn-primary">搜索</button>
+            </form>
         </div>
-        <div class="category-right">
-            <!-- 区域滚动的父容器 -->
-            <div class="mui-scroll-wrapper">
-                <!-- 区域滚动的子容器 -->
-                <div class="mui-scroll">
+        <!-- 搜索历史 -->
+        <div class="serach-history">
+            <div class="title mui-clearfix">
+                <span>搜索历史</span>
+                <span class="fa fa-trash btn-clear">清空记录</span>
+            </div>
+            <div class="content">
 
-                </div>
             </div>
         </div>
     </main>
@@ -68,27 +70,17 @@
             </div>
         </div>
     </footer>
-    <script type="text/html" id="queryTopCategoryTmp">
-        <ul>
-        {{each rows value i}}
-            <li class="{{i == 0 ? 'active' : ''}}"><a href="#" data-id="{{value.id}}">{{value.categoryName}}</a></li>
-        {{/each}}
-        </ul>
-    </script>
-    <script type="text/html" id="querySecondCategory">
+    <script type="text/html" id="searchListTmp">
         {{if rows.length > 0}}
-        <div class="mui-row">
-            {{each rows value i}}
-            <div class="mui-col-xs-4">
-                <a href="#">
-                    <img src="{{value.brandLogo}}" alt="">
-                    <p>{{value.brandName}}</p>
-                </a>
-            </div>
+        <ul>
+            {{each rows value}}
+            <li>
+                <a href="#" data-id="{{value.id}}">{{value.search}}<span class="fa fa-close btn-delete"></span></a>
+            </li>
             {{/each}}
-        </div>
+        </ul>
         {{else}}
-        <div><p>没有此品牌！</p></div>
+        <p>没有历史记录</p>
         {{/if}}
     </script>
     <!-- 5. 引入模板引擎 渲染模板 -->
@@ -99,7 +91,7 @@
     <!-- 7. 引入zepto 帮我们去操作DOM发送AJAX请求 -->
     <script src="./lib/zepto/zepto.min.js"></script>
     <!-- 8. 引入分类的JS文件 自己写的JS逻辑代码 -->
-    <script src="./js/category.js"></script>
+    <script src="./js/search.js"></script>
 </body>
 
 </html>

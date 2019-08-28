@@ -1,11 +1,12 @@
 /* 引入公共样式文件 */
+@import "./base.less";
 
-@import 'base.less';
+html,body {
+    height: 100%;
+}
+
 body {
     background-color: #ccc;
-}
-html,body{
-	height: 100%;
 }
 
 #main {
@@ -23,24 +24,22 @@ html,body{
                 >a {
                     height: 45px;
                     line-height: 45px;
+                    text-align: center;
                     display: block;
                     background-color: #fff;
-                    border-bottom: 1px solid #ccc;
-                    text-align: center;
                     font-size: 14px;
                 }
             }
         }
     }
     .category-right {
-        flex: 1;
         position: relative;
-		height: 100%;
+        flex: 1;
         .mui-scroll {
             padding: 10px;
-            /* 给子元素添加一个最小高度101% 
-            当内容不够高也想滑动可以给区域滚动的子容器添加一个最小高 
-            只要子元素比父元素高就可以滑动*/
+            /* 给子元素添加一个最小高度101%
+            当内容不够高也相滑动可以给区域的子容器添加一个最小高度
+            只要子元素比父元素高就可以滑动 */
             min-height: 101%;
             .mui-row {
                 background-color: #fff;

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var search = "3";
+
+    var arr = [{search: "1", id: 1}, {search: "2", id: 2}, {search: "3", id: 3}, {search: "3", id: 4},{search: "3", id: 5},{search: "3", id: 6},{search: "3", id: 7},{search: "4", id: 8}];
+    console.log(arr);
+
+    arr.filter(function(item,index){
+        if(item.search === search){
+            return false;
+        }else {
+            return true;
+        }
+    })
+
+    console.log(arr);
+</script>

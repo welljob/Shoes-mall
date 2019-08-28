@@ -1,0 +1,40 @@
+/* 导入公共样式 */
+@import "base.less";
+html,body {
+    height: 100%;
+}
+
+// 给父元素main高度和相对定位
+#main {
+    position: relative;
+    height: 100%;
+}
+
+.product-list {
+    .title {
+        background-color: #eee;
+        .mui-row {
+            >div {
+                &.active {
+                    >a {
+                        color: red;
+                    }
+                }
+                >a {
+                    display: block;
+                    font-size: 12px;
+                    line-height: 30px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .content {
+        .mui-row {
+            >div {
+                margin-top: 10px;
+                padding: 0px 5px;
+            }
+        }
+    }
+}

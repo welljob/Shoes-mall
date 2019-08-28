@@ -1,0 +1,47 @@
+/* 引入公共样式 */
+
+@import "base.less";
+
+/* 搜索样式历史 */
+
+#main {
+    padding: 10px;
+    .title{
+        span{
+            font-size: 12px;
+            height: 14px;
+            line-height: 14px;
+            &:first-child {
+                float: left;
+            }
+            &:last-child {
+                float: right;
+            }
+        }
+    }
+    .content {
+        padding-top: 10px;
+        >ul {
+            >li {
+                border: 1px solid #ccc;
+                border-bottom: 0px;
+                &:last-child {
+                    border-bottom: 1px solid #ccc;
+                }
+                a {
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 12px;
+                    padding-left: 10px;
+                    display: block;
+                    span {
+                        float: right;
+                        margin-right: 10px;
+                        margin-top: 9px;
+                    }
+                }
+            }
+        }
+    }
+
+}
