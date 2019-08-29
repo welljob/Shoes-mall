@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <!-- 1. 添加视口移动端 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>乐淘-商品搜索</title>
     <!-- 1. 引入字体图标的CSS文件 提供一些字体图标 -->
@@ -75,7 +75,7 @@
         <ul>
             {{each rows value}}
             <li>
-                <a href="#" data-id="{{value.id}}">{{value.search}}<span class="fa fa-close btn-delete"></span></a>
+                <a href="productList.html?search={{value.search}}" data-id="{{value.id}}">{{value.search}}<span class="fa fa-close btn-delete"></span></a>
             </li>
             {{/each}}
         </ul>

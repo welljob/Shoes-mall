@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+	<div>哈哈哈</div>
+	<p>p</p>
+    <script>
+    //用来给别人做事情的  但是这个事情每个每个情况不太一样
+    // 如果函数做的事情针对不同人不一样 那就放一个坑 你要让我做什么事就告诉我
+    // 能够存储代码的就只有函数
+    //callback 就是用来接收函数一个参数
+    function fun(callback) {
+        // callback = function() {
+        //     console.log(1)
+        // }
+        // 如果是callback参数的值他是一个函数就调用callback 相当于调用了这个函数
+        callback()
+    }
+    //如果调用一个函数需要传递一个参数的代码 代码只能够放到函数里面传递
+    fun(function() {
+        console.log(1)
+    })
+    fun(function() {
+        document.write(1)
+    })
+    fun(function() {
+        // alert(1)
+    })
+
+    var div = document.querySelector('div');
+    div.addEventListener('click', function() {
+        div.style.backgroundColor = 'red';
+    })
+    var p = document.querySelector('p');
+    p.addEventListener('click', function() {
+        p.style.color = 'red';
+    })
+
+    // div.on('click',function () {
+    	
+    // })
+    </script>
+</body>
+
+</html>

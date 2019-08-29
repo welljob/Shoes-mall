@@ -20,7 +20,7 @@ Letao.prototype = {
     addHistory: function() {
         // 1. 给搜索按钮添加点击事件
         const that = this;
-        $(".btn-search").on("click",function(){
+        $(".btn-search").on("tap",function(){
             // 2. 获取搜索框输入的内容
             var search = $(".search-input").val();
             
@@ -64,13 +64,10 @@ Letao.prototype = {
             // 保存到localStorage中
             window.localStorage.setItem("searchLog",jsonSearchData)
 
-            // 清空input的字符串
-            var search = $(".search-input").val("");
-
             // 15. 当前添加完成后也要查询历史记录
             that.queryHistory();
             // 16. 点击搜索要跳转到商品列表
-            window.location.href = "productlist.html";
+            window.location.href = "productlist.html?search=" + search;
    
         })
     },

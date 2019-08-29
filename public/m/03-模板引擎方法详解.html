@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script id="test" type="text/html">
+        <h1>{{title}}</h1>
+        <ul>
+            <!-- 遍历当前传入模板方法数据里面的list数组 遍历就是data.list这个属性的值 因为值是数组 -->
+            {{each abc}}
+            <li>索引 {{$index}} : {{$value}}</li>
+            {{/each}}
+        </ul>
+    </script>
+    <script id="test1" type="text/html">
+        <!-- 如果直接遍历一个数组 直接写each 里面什么都不能写 也不能起别名 -->
+        {{each}}
+            <li>{{$value}}{{$value}}</li>
+        {{/each}}
+    </script>
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <script>
+        var data = {
+            title: "标签",
+            abc: ['文艺','博客','摄影','电影','民谣','旅行','吉他'],
+            arr: ['博客','摄影','民谣','旅行','吉他']
+        };
+        var arr = ['文艺','博客','摄影','电影','民谣','旅行','吉他'];
+        // template方法的参数第一个参数是模板id 第二个参数 是模板的数据
+        // 数据可以以2种格式 第一种格式是对象格式
+        var html = template("test",data);
+        console.log(html);
+        // var html = template("test",{abc: arr});
+        var html1 = template("test",arr);
+        console.log(html1);
+        var html2 = template("test1",arr);
+        console.log(html2);
+    </script>
+</body>
+</html>

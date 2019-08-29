@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        // 谁调用了这个函数就是谁
+        var Letao = function() {
+
+        }
+        Letao.prototype = {
+            fun: function() {
+                console.log(this);
+                // 把之前letao对象保存在that变量中
+                var that = this;
+                var div = document.querySelector("div");
+                div.addEventListener("click",function(){
+                    // 事件是给div添加就是div调用了这个函数
+                    console.log(this);
+                    // 如果事件里面需要获取到外面的letao对象
+                    console.log(that);
+                })
+            }
+        }
+        // 是使用new 调用构造函数 这个函数里面this就是当前new的对象
+        var letao = new Letao();
+        // letao调用fun方法
+        letao.fun();
+    </script>
+</body>
+</html>
