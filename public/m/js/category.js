@@ -38,7 +38,7 @@ Letao.prototype = {
             type: "get",
             dataType: "json",
             // 相当于localhost:3000/category/queryTopCategory
-            url: "http://localhost:3000/category/queryTopCategory",
+            url: API_BASE_URL + "/category/queryTopCategory",
             // url: "/category/queryTopCategory",
             success: function(data) {
                 // 因为你们data不是一个对象 data数组
