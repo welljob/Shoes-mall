@@ -20,7 +20,7 @@
 <body>
     <!-- 头部区域 -->
     <header id="header">
-        <a href="#" class="fa fa-arrow-left"></a>
+        <a href="javascript:" class="fa fa-arrow-left" onclick="window.history.go(-1)"></a>
         <h4>个人中心</h4>
         <a href="#" class="fa fa-refresh"></a>
     </header>
@@ -62,7 +62,7 @@
     </main>
     <section id="order" class="mui-clearfix">
         <div class="mui-pull-left">
-            订单总额：￥<span class="total">8888.00</span>
+            订单总额：￥<span class="total">00.00</span>
         </div>
         <div class="mui-pull-right">
             <button type="button" class="mui-btn mui-btn-danger">生成订单</button>
@@ -99,12 +99,19 @@
 
     <script id="cartTmp" type="text/html">
         {{each data value}}
-        <li class="mui-table-view-cell mui-media">
-            <a href="javascript:;" class="mui-navigate-right product-cart">
+        <li class="mui-table-view-cell mui-media mui-transitioning">
+            <!-- mui-slider-right 右滑动的时候显示的内容 -->
+            <!-- <div class="mui-slider-right mui-disabled" data-id="{{value.id}}" data-product-size="{{value.productSize}}" data-size="{{value.size}}" data-product-num="{{value.num}}" data-num="{{value.num}}"> -->            
+            <div class="mui-slider-right mui-disabled" data-product="{{value}}">
+					<a class="mui-btn mui-btn-primary btn-edit">编辑</a>
+					<a class="mui-btn mui-btn-red btn-delete">删除</a>
+            </div>
+            <!-- mui-slider-handle 左边静止的内容 -->
+            <a href="javascript:;" class="mui-navigate-right product-cart mui-slider-handle">
                 <div class="mui-pull-left">
                     <img class="mui-media-object  product-img" src="{{value.pic[0].picAddr}}">
                     <div class="product-select">
-                        <input type="checkbox">
+                        <input type="checkbox" data-price="{{value.price}}" data-num="{{value.num}}">
                     </div>
                 </div>
                 <div class="mui-media-body">
@@ -125,6 +132,30 @@
             </a>
         </li>
         {{/each}}
+    </script>
+    <script id="editCartTmp" type="text/html">
+        <div class="product-all-size">
+            尺码：
+            {{each proSize}}
+            {{if $value == size}}
+            <span class="btn-size active" data-size="{{$value}}">{{$value}}</span>
+            {{else }}
+            <span class="btn-size" data-size="{{$value}}">{{$value}}</span>
+            {{/if}}
+            {{/each}}
+        </div>
+        <div class="product-num">
+            数量
+            <div class="mui-numbox" data-numbox-step='1' data-numbox-min='0' data-numbox-max='{{size}}'>
+                <!-- "-"按钮，点击可减小当前数值 -->
+                <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                <input class="mui-numbox-input" type="number" value="{{num}}"/>
+                <!-- "+"按钮，点击可增大当前数值 -->
+                <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+            </div>
+            剩余：<span>{{size}}</span>件
+        </div>
+
     </script>
 
 

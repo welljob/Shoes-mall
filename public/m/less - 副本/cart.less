@@ -1,7 +1,7 @@
 @import "./base.less";
 
 body {
-    padding-bottom: 0.8rem;
+    padding-bottom: 80px;
 }
 
 html,body {
@@ -14,25 +14,25 @@ html,body {
     height: 100%;
     position: relative;
     .mui-media {
-        padding: 0.08rem 0.15rem;
+        padding: 8px 15px;
     }
     .product-cart {
         .product-img {
-            max-width: 0.6rem;
-            height: 0.6rem;
-            width: 0.6rem;
+            max-width: 60px;
+            height: 60px;
+            width: 60px;
         }
         .product-selector {
             text-align: center;
             input {
-                margin-top: 0.2rem;
+                margin-top: 20px;
             }
         }
     }
     .product-name {
-        font-size : 0.14rem;
-        padding: 0 0.1rem;
-        line-height: 0.2rem;
+        font-size : 14px;
+        padding: 0 10px;
+        line-height: 20px;
         color: #333;
 
         /* 只显示2行文字超出隐藏并且显示... */
@@ -47,65 +47,65 @@ html,body {
         white-space: normal;
     }
     .product-price {
-        line-height: 0.2rem;
+        line-height: 20px;
         .new-price {
             color: red;
-            font-size: 0.16rem;
+            font-size: 16px;
         }
         .old-price {
             color: #ccc;
-            font-size: 0.14rem;
+            font-size: 14px;
         }
     }
     .product-num {
-        line-height: 0.2rem;
-        font-size: 0.14rem;
-        margin-right: 0.2rem;
+        line-height: 20px;
+        font-size: 14px;
+        margin-right: 20px;
     }
     .product-size {
-        line-height: 0.2rem;
-        font-size: 0.14rem;
+        line-height: 20px;
+        font-size: 14px;
     }
 }
 
 #order {
     /* 固定定位 */
     position: fixed;
-    bottom: 0.4rem;
+    bottom: 40px;
     left: 0;
     z-index: 9999;
-    height: 0.4rem;
+    height: 40px;
     background-color: #fff;
     width: 100%;
     border: 1px solid #ccc;
     .mui-pull-left {
-        line-height: 0.4rem;
-        font-size: 0.14rem;
-        padding-left: 0.2rem;
+        line-height: 40px;
+        font-size: 14px;
+        padding-left: 20px;
         color: red;
         font-weight: 600;
     }
     .mui-pull-right {
         >button {
-            height: 0.4rem;
-            width: 1.2rem;
+            height: 40px;
+            width: 120px;
         }
     }
 }
 
 
 .product-all-size {
-    padding: 0.1rem 0;
-    font-size: 0.14rem;
+    padding: 10px 0;
+    font-size: 14px;
     span {
         display: inline-block;
-        width: 0.28rem;
-        height: 0.28rem;
+        width: 28px;
+        height: 28px;
         border: 1px solid #ccc;
-        border-radius: 0.05rem;
-        line-height: 0.28rem;
+        border-radius: 5px;
+        line-height: 28px;
         text-align: center;
-        margin-top: 0.05rem;
+        margin-top: 5px;
         &.active {
             background-color: @mainColor;
             border: 1px solid @mainColor;
