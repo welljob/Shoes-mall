@@ -1,0 +1,94 @@
+@import "./base.less";
+
+body {
+    padding-bottom: 80px;
+}
+
+html,body {
+    height: 100%;
+}
+
+
+
+#main {
+    height: 100%;
+    position: relative;
+    .mui-media {
+        padding: 8px 15px;
+    }
+    .product-cart {
+        .product-img {
+            max-width: 60px;
+            height: 60px;
+            width: 60px;
+        }
+        .product-selector {
+            text-align: center;
+            input {
+                margin-top: 20px;
+            }
+        }
+    }
+    .product-name {
+        font-size : 14px;
+        padding: 0 10px;
+        line-height: 20px;
+        color: #333;
+
+        /* 只显示2行文字超出隐藏并且显示... */
+        display: -webkit-box;
+        // width: @width;
+	    // line-height: @line-height;        
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    word-break: break-all;
+	    -webkit-box-orient: vertical;
+	    -webkit-line-clamp: 2; // 要几行就写几行
+        white-space: normal;
+    }
+    .product-price {
+        line-height: 20px;
+        .new-price {
+            color: red;
+            font-size: 16px;
+        }
+        .old-price {
+            color: #ccc;
+            font-size: 14px;
+        }
+    }
+    .product-num {
+        line-height: 20px;
+        font-size: 14px;
+        margin-right: 20px;
+    }
+    .product-size {
+        line-height: 20px;
+        font-size: 14px;
+    }
+}
+
+#order {
+    /* 固定定位 */
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    z-index: 9999;
+    height: 40px;
+    background-color: #fff;
+    width: 100%;
+    border: 1px solid #ccc;
+    .mui-pull-left {
+        line-height: 40px;
+        font-size: 14px;
+        padding-left: 20px;
+        color: red;
+        font-weight: 600;
+    }
+    .mui-pull-right {
+        >button {
+            height: 40px;
+            width: 120px;
+        }
+    }
+}

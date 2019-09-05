@@ -22,14 +22,21 @@ a {
     color: #666;
     text-decoration: none;
     /* 一般移动端清除a的点击高亮 透明就表示去掉 */
-    -webkit-tap-highlight-color: transparent;
+    // -webkit-tap-highlight-color: transparent;
+}
+
+// 去掉输入框记住用户密码 后的背景颜色
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
 }
 
 input {
     border: none;
     outline: none;
     /* 清除移动端默认的表单样式 */
-    -webkit-appearance: none;
+    // -webkit-appearance: none;
 }
 
 img {
@@ -76,7 +83,8 @@ body {
         }
     }
     .fa-search,
-    .fa-home {
+    .fa-home,
+    .fa-refresh {
         position: absolute;
         top: 12px;
         right: 15px;

@@ -29,29 +29,36 @@ $(function () {
         letao.initSlide();
         */
     });
-    
+
     // 调用查询商品详情的API渲染商品信息
-    letao.querProductDetail(id,function(data){
+    letao.querProductDetail(id, function (data) {
         // 1. 获取尺寸里面的最小尺码 30-50 使用-分割第一个就是最小尺码  
-        let [min,max] = data.size.split('-');
+        let [min, max] = data.size.split('-');
 
         // 新建一个空数组，把尺码push到这个新数组
         let arr = [];
 
-        for(var i = parseInt(min);i <= max;i++){
+        for (var i = parseInt(min); i <= max; i++) {
             arr.push(i);
         }
 
         // 把数组赋值给data.size
         data.newSize = arr;
 
-        let html = template("detailTmp",data);
+        let html = template("detailTmp", data);
 
         $(".product-detail").html(html);
 
         // 动态添加输入框，也要重新初始化
         mui(".mui-numbox").numbox();
-    })
+
+        // 让尺码可以点击
+        $(".product-detail").on("tap", ".btn-size", function () {
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+    });
+
+    letao.addCart(id);
 
 })
 
@@ -100,6 +107,49 @@ Letao.prototype = {
                 typeof callback === "function" && callback(res);
             }
         })
+    },
+
+    // 加入购物车
+    addCart(id) {
+        // 1. 给加入购物车添加点击按钮
+        $(".btn-add-cart").on("tap", function () {
+            // 2. 获取当前选择的尺码
+            const size = $(".btn-size.active").data("size");
+            // 3. 判断如果没有选择尺码就是提示选择尺码
+            if (!size) {
+                mui.toast('请选择尺码', { duration: 'long', type: 'div' });
+                return;
+            }
+            // 4. 获取选择的数量 调用数字框获取取值的函数
+            const num = mui(".product-num .mui-numbox").numbox().getValue();
+            // 5. 判断当前数量是否选择
+            if (num === 0) {
+                mui.toast('请选择数量', { duration: 'long', type: 'div' });
+                return;
+            }
+            // 6. 调用加入购物车的API加入购物车
+            $.ajax({
+                url: "/cart/addCart",
+                type: "post",    // 注意提交到数据 是post
+                data: { productId: id, num: num, size: size },
+                success: function (data) {
+                    // 判断如果当前未登录跳转到登录页面
+                    if (data.error === 400) {
+                        window.location.href = "login.html";
+                    }else {
+                        // 加入购物车成功提示去购物车查看
+                        mui.confirm("加入购物车成功，是否去购物车结算？","温馨提示",["去","不去"],function(e){
+                            if(e.index == 0){
+                                // 点击了去 跳转到购物车
+                                window.location.href = "cart.html";
+                            }
+                        })
+                    }
+                }
+            })
+        })
+
+
     }
 };
 

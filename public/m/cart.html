@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 1. 添加视口移动端 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人中心</title>
+    <!-- 1. 引入字体图标的CSS文件 提供一些字体图标 -->
+    <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.css">
+    <!-- 2. 引入MUI的CSS文件 提供组件样式MUI布局 -->
+    <link rel="stylesheet" href="./lib/mui/css/mui.css">
+    <!-- 3. 引入分类的less文件 一定注意把 rel="stylesheet/less" 自写的样式 -->
+    <link rel="stylesheet/less" href="./less/cart.less">
+    <!-- 4. 引入less.js的编译器文件 编译less文件 -->
+    <script src="./lib/less/less.js"></script>
+</head>
+
+<body>
+    <!-- 头部区域 -->
+    <header id="header">
+        <a href="#" class="fa fa-arrow-left"></a>
+        <h4>个人中心</h4>
+        <a href="#" class="fa fa-refresh"></a>
+    </header>
+
+    <main id="main">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll ">
+                <!--这里放置真实显示的DOM内容-->
+                <!-- 轮播图区域 -->
+                <ul class="mui-table-view cart-list">
+                    <li class="mui-table-view-cell mui-media">
+                        <a href="javascript:;" class="mui-navigate-right product-cart">
+                            <div class="mui-pull-left">
+                                <img class="mui-media-object  product-img" src="./images/product.jpg">
+                                <div class="product-select">
+                                    <input type="checkbox">
+                                </div>
+                            </div>
+                            <div class="mui-media-body">
+                                <p class="product-name">匡威三星标1970s converse复刻 142334c 144757c三星标黑色高帮</p>
+                                <div class="mui-clearfix">
+                                    <div class="product-price mui-pull-left">
+                                        <strong class="new-price">￥499.00</strong>
+                                        <del class="old-price">￥888.00</del>
+                                    </div>
+                                    <div class="product-num mui-pull-right">
+                                        x<span class="num">2</span>双
+                                    </div>
+                                </div>
+                                <div class="product-size">
+                                    鞋码：<span class="size">50</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <section id="order" class="mui-clearfix">
+        <div class="mui-pull-left">
+            订单总额：￥<span class="total">8888.00</span>
+        </div>
+        <div class="mui-pull-right">
+            <button type="button" class="mui-btn mui-btn-danger">生成订单</button>
+        </div>
+    </section>
+
+    <!-- 底部区域 -->
+    <footer id="footer">
+        <div class="mui-row">
+            <div class="mui-col-xs-3">
+                <a href="index.html" class="fa fa-home">
+                    <span>首页</span>
+                </a>
+            </div>
+            <div class="mui-col-xs-3">
+                <a href="category.html" class="fa fa-bars">
+                    <span>分类</span>
+                </a>
+            </div>
+            <div class="mui-col-xs-3">
+                <a href="cart.html" class="fa fa-shopping-cart">
+                    <span>购物车</span>
+                </a>
+            </div>
+            <div class="mui-col-xs-3">
+                <a href="user.html" class="fa fa-user">
+                    <span>个人中心</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script id="cartTmp" type="text/html">
+        {{each data value}}
+        <li class="mui-table-view-cell mui-media">
+            <a href="javascript:;" class="mui-navigate-right product-cart">
+                <div class="mui-pull-left">
+                    <img class="mui-media-object  product-img" src="{{value.pic[0].picAddr}}">
+                    <div class="product-select">
+                        <input type="checkbox">
+                    </div>
+                </div>
+                <div class="mui-media-body">
+                    <p class="product-name">{{value.proName}}</p>
+                    <div class="mui-clearfix">
+                        <div class="product-price mui-pull-left">
+                            <strong class="new-price">￥{{value.price}}</strong>
+                            <del class="old-price">￥{{value.oldPrice}}</del>
+                        </div>
+                        <div class="product-num mui-pull-right">
+                            x<span class="num">{{value.num}}</span>双
+                        </div>
+                    </div>
+                    <div class="product-size">
+                        鞋码：<span class="size">{{value.size}}</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+
+
+    <!-- 5. 引入模板引擎 渲染模板 -->
+    <!-- <script src="./lib/artTemplate/template.js"></script> -->
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <!-- 6. 引入MUI的JS包 实现MUIJS效果 -->
+    <script src="./lib/mui/js/mui.js"></script>
+    <!-- 7. 引入zepto 帮我们去操作DOM发送AJAX请求 -->
+    <script src="./lib/zepto/zepto.min.js"></script>
+    <!-- 8. 引入分类的JS文件 自己写的JS逻辑代码 -->
+    <script src="./js/cart.js"></script>
+</body>
+
+</html>

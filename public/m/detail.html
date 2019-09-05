@@ -182,12 +182,9 @@
                 <del class="old-price">{{oldPrice}}</del>
             </div>
             <div class="product-size">
+                尺码：
                 {{each newSize}}
-                {{if $index === 0}}
-                <span class="btn-size active">{{$value}}</span>
-                {{else}}
-                <span class="btn-size">{{$value}}</span>
-                {{/if}}
+                <span class="btn-size" data-size="{{$value}}">{{$value}}</span>
                 {{/each}}
             </div>
             <div class="product-num">
