@@ -206,11 +206,15 @@ Letao.prototype = {
                 page: parmas.page || 1,
                 pageSize: parmas.pageSize || 2
             },
+            beforeSend: function(){
+                $(".loading").show();
+            },
             success: function (res) {
                 // 当请求数据完成后回调函数把数据传递给回调函数的参数
                 // if(callback) {
                 //     callback(res);
                 // }
+                $(".loading").hide();
                 callback && callback(res);
             }
         })

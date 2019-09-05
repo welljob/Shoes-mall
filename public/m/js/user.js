@@ -17,7 +17,11 @@ Letao.prototype = {
         // 1. 调用queryUserMessage API获取用户信息
         $.ajax({
             url: "/user/queryUserMessage",
+            beforeSend: function(){
+                $(".loading").show();
+            },
             success: function(data){
+                $(".loading").hide();
                 // 2. 判断当前是否查询成功 不成功表示为登录
                 if(data.error){
                     // 3. 跳转到登录页面
@@ -37,8 +41,12 @@ Letao.prototype = {
             // 2. 调用退出登录的API实现提出
             $.ajax({
                 url: "/user/logout",
+                beforeSend: function(){
+                    $(".loading").hide();
+                },
                 success: function (data){
                     // 3. 判断如果退出成功就跳转登录
+                    $(".loading").hide();
                     if(data.success){
                         window.location.href = "login.html";
                     }

@@ -32,7 +32,7 @@ Letao.prototype = {
     },
 
     // 获取一级分类的数据
-    queryTopCategory: function() {
+    queryTopCategory: function () {
         // 1. 调用ajax请求
         $.ajax({
             type: "get",
@@ -40,23 +40,28 @@ Letao.prototype = {
             // 相当于localhost:3000/category/queryTopCategory
             url: API_BASE_URL + "/category/queryTopCategory",
             // url: "/category/queryTopCategory",
-            success: function(data) {
+            beforeSend: function (xhr, settings) {
+                // 在发起请求时调用
+                $(".loading").show();
+            },
+            success: function (data) {
                 // 因为你们data不是一个对象 data数组
                 // 模板引擎需要传入一个对象
                 // var html = template("id",{{"list": data.rows}})
-                var html = template("queryTopCategoryTmp",data);
+                $(".loading").hide();   // 请求成功隐藏
+                var html = template("queryTopCategoryTmp", data);
                 $(".category-left").html(html);
             }
         })
     },
 
     // 分类左侧点击
-    catagoryLeftClick: function() {
+    catagoryLeftClick: function () {
         // 把letao对象保存到that变量中
         var that = this;
         // 1. 给左侧分类的a添加点击事件 如果a的动态生成的元素要使用委托
         // 移动端推荐使用tap 解决延迟
-        $(".category-left").on("tap","li a",function(event){
+        $(".category-left").on("tap", "li a", function (event) {
             // 2. 给当前点击的父元素添加active 兄弟删除active类名
             $(this).parent().addClass("active").siblings().removeClass("active");
             // data方法专门用来获取自定义属性的值
@@ -67,13 +72,17 @@ Letao.prototype = {
     },
 
     // 获取二级分类
-    querySecondCategory: function(id) {
+    querySecondCategory: function (id) {
         // 1. 使用ajax获取二级分类API
         $.ajax({
             url: "/category/querySecondCategory",
-            data: {id: id},
-            success: function(data) {
-                var html = template("querySecondCategory",data);
+            data: { id: id },
+            beforeSend: function (xhr, settings) {
+                $(".loading").show();
+            },
+            success: function (data) {
+                $(".loading").hide();     // 请求成功隐藏
+                var html = template("querySecondCategory", data);
                 $(".mui-scroll").html(html);
             }
         })

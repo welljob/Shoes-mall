@@ -18,12 +18,12 @@ $(function () {
     // 调用计算总金额方法
     letao.getSum();
 
-    $('.fa-refresh').on("tap",function(){
+    $('.fa-refresh').on("tap", function () {
         letao.queryCart({
             page: 1,
             pageSize: 5
-        },function(data){
-            const html = template("cartTmp",data);
+        }, function (data) {
+            const html = template("cartTmp", data);
             $(".cart-list").html(html);
         })
     })
@@ -40,7 +40,11 @@ Letao.prototype = {
         $.ajax({
             url: "/cart/queryCartPaging",
             data: { page: params.page, pageSize: params.pageSize },
+            beforeSend: function () {
+                $(".loading").show();
+            },
             success: function (data) {
+                $(".loading").hide();
                 // 判断是否成功
                 if (data.error === 400) {
                     // 如果不成功
@@ -147,7 +151,13 @@ Letao.prototype = {
                         url: "/cart/updateCart",
                         type: "post",
                         data: { id: product.id, size: size, num: num },
+                        beforeSend: function () {
+                            $(".loading").show();
+
+                        },
                         success: function (data) {
+                            $(".loading").hide();
+
                             // 16. 判断如果成功
                             if (data.success) {
                                 // 17. 重新渲染购物车
@@ -186,8 +196,12 @@ Letao.prototype = {
             // 3. 调用删除API实现删除
             $.ajax({
                 url: "/cart/deleteCart",
-                data: {id: id},
+                data: { id: id },
+                beforeSend: function () {
+                    $(".loading").show();
+                },
                 success: function (data) {
+                    $(".loading").hide();
                     // 16. 判断如果成功
                     if (data.success) {
                         // 17. 重新渲染购物车
@@ -204,17 +218,17 @@ Letao.prototype = {
         })
     },
 
-    
+
     // 5. 计算总金额
-    getSum:function(){
+    getSum: function () {
         // 1. 给所有复选框添加change事件 复选框选中发生更改就触发的事件
-        $(".cart-list").on("change",'input[type="checkbox"]',function(){
+        $(".cart-list").on("change", 'input[type="checkbox"]', function () {
             // 2. 获取所有被选中的复选框
             const selected = $("input[type='checkbox']:checked");
             // 定义一个所有商品总价
             var sum = 0;
             // 3. 循环遍历每个选中的复选框
-            selected.each(function(index,ele){
+            selected.each(function (index, ele) {
                 // 4. 获取当前点击的复选框所在的商品的价格和数量
                 let price = $(ele).data("price");
                 let num = $(ele).data("num");

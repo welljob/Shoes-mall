@@ -103,7 +103,11 @@ Letao.prototype = {
         $.ajax({
             url: "/product/queryProductDetail",
             data: { id },
+            beforeSend: function () {
+                $(".loading").show();
+            },
             success(res) {
+                $(".loading").hide();
                 typeof callback === "function" && callback(res);
             }
         })
@@ -136,10 +140,10 @@ Letao.prototype = {
                     // 判断如果当前未登录跳转到登录页面
                     if (data.error === 400) {
                         window.location.href = "login.html";
-                    }else {
+                    } else {
                         // 加入购物车成功提示去购物车查看
-                        mui.confirm("加入购物车成功，是否去购物车结算？","温馨提示",["去","不去"],function(e){
-                            if(e.index == 0){
+                        mui.confirm("加入购物车成功，是否去购物车结算？", "温馨提示", ["去", "不去"], function (e) {
+                            if (e.index == 0) {
                                 // 点击了去 跳转到购物车
                                 window.location.href = "cart.html";
                             }

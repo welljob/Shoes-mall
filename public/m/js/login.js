@@ -34,12 +34,16 @@ Letao.prototype = {
                 url: "/user/login",
                 type: "post",
                 data: { "username": username, "password": password },
+                beforeSend: function () {
+                    $(".loading").show();
+                },
                 success: function (data) {
+                    $(".loading").hide();
                     // 5. 判断登录是否成功
                     if (data.error === 403) {
                         // 用户名或密码错误
                         mui.toast(data.message, { duration: "long", type: "div" });
-                    }else {
+                    } else {
                         // 登录成功 跳转到个人中心
                         window.location.href = "user.html";
                         // location.reload();
