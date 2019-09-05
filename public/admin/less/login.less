@@ -1,34 +1,41 @@
-body{
-	background-color: #2f4050;
+@import "./base.less";
+
+body {
+    position: relative;
+    background-color: @mainColor;
 }
-#login{
-	width: 500px;
-	height: 340px;
-	position: absolute;
-	background-color: #fff;
-	left: 50%;
-	top: 50%;
-	transform:translate(-50%,-50%);
-	padding: 100px 50px 0px;
-	border-radius:10px;
-	.logo{
-		position: absolute;
-		left: 50%;
-		top: 0px;
-		width: 140px;
-		height: 140px;
-		border-radius: 50%;
-		transform:translate(-50%,-50%);
-		border:10px solid #fff;
-		box-shadow: 0px 0px 5px #666;
-	}
-	.form-group{
-		.control-label{
-			text-align: center;
-		}
-	}
-	.btn-login{
-		width: 100%;
-		height: 40px;
-	}
+
+#login-form {
+    width: 500px;
+    height: 300px;
+    margin: 200px auto;
+    background-color: #fff;
+    padding: 85px 60px 0px;
+    position: relative;
+    border-radius: 10px;
+    .input-group {
+        padding: 10px 0;
+    }
+    .form-group {
+        padding: 10px 0;
+    }    
+    .avatar {
+        position: absolute;
+        left: 50%;
+        top: 0px;
+        transform: translate(-50%,-50%);
+        width: 140px;
+        height: 140px;
+        border: 10px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 1px 5px #ccc;
+        background-color: pink;
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+    .btn-login {
+        width: 100%;
+    }
 }

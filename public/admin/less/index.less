@@ -1,15 +1,124 @@
+@import "./base.less";
 
-
-@import 'base.less';
- .info{
-    background-color: #fff;
-    width: 100%;
+html,
+body {
     height: 100%;
-    padding: 30px 10px;
-    .table{
-        td,th{
+}
+
+#main {
+    display: flex;
+    height: 100%;
+    .left {
+        width: 180px;
+        height: 100%;
+        background-color: @mainColor;
+        .title {
             text-align: center;
-            line-height: 30px;
+            padding: 30px 0;
+            background-color: #243443;
+            img {
+                width: 86px;
+                height: 86px;
+                border-radius: 50%;
+                border: 3px solid rgba(255,255,255,.3);
+            }
+            p {
+                font-size: 16px;
+                color: #a9b0c2;
+                margin-top: 10px;
+            }
         }
-    }    
+        .content {
+            padding-top: 20px;
+            .list-group {
+                .list-group-item {
+                    margin: 5px 0px;
+                    &.active,
+                    &:hover {
+                        background-color: #243443;
+                        border-color: #243443;
+                    }
+                    color: #a9b0c2;
+                    background-color: @mainColor;
+                    border-color: @mainColor;
+                    /* 给普通的标签添加鼠标小手 */
+                    cursor: pointer;
+                }
+                .list-group {
+                    margin: 20px;
+                }
+            }
+        }
+    }
+    .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        .title {
+            padding: 10px;
+            height: 50px;
+            .pull-left {
+                background-color: #5cb95c;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                border-radius: 5px;
+                >i {
+                    color: #fff;
+                    font-size: 18px;
+                }
+            }
+            .pull-right {
+                text-decoration: none;
+                color: #666;
+            }
+        }
+        .content {
+            flex: 1; 
+            background-color: #f4f6f8;
+            padding: 40px 20px;
+            .content-body {
+                background-color: #fff;
+                width: 100%;
+                height: 100%;
+                padding: 30px 20px;
+                .table {
+                    td {
+                        height: 50px;
+                        line-height: 50px;
+                        text-align: center;
+                        img {
+                            width: 100px;
+                        }
+                    }
+                    th {
+                        height: 40px;
+                        line-height: 40px;
+                        text-align: center;
+                    }
+                }
+                .page {
+                    .pull-left {
+                        line-height: 40px;
+                    }
+                    .pull-right {
+                        .pagination {
+                            margin: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal-body{
+    .form-group{
+        padding: 10px 0;
+        >div{
+            line-height: 34px;
+            height: 34px;
+        }
+    }
 }

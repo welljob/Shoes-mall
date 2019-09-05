@@ -1,111 +1,95 @@
-var letao;
-$(function() {
-    letao = new Letao();
+$(function(){
+    const letao = new Letao();
+    // 调用查询用户的方法
     letao.queryUser();
-    letao.getPage();
+    // 调用用户操作函数
     letao.userOption();
-});
+    // 调用点击切换分页的函数
+    letao.goToPage();
+})
 
-var Letao = function() {
+
+const Letao = function() {
 
 }
-var page = 1;
-var pageSize = 5;
+
 Letao.prototype = {
-    //获取所有用户信息
-    queryUser: function() {
-        // 1. 请求获取用户信息的接口
+    // 查询用户信息
+    queryUser: function(page,pageSize){
+        const that = this;
+        // 1. 调用获取用户信息的API
         $.ajax({
-            url: '/user/queryUser',
-            data: { 'page': page, 'pageSize': pageSize },
+            url: "/user/queryUser",
+            data: {page: page || 1,pageSize: pageSize || 5},
             success: function(data) {
-                console.log(data);
-                 // 实现分页
-                 // 1. 有当前页码数  page
-                 // 2. 每页的条数 pageSize  
-                 // 如果返回了的数据条数和pageSize一样就使用pageSize 
-                 // 如果返回的条数不一样 取当前返回数组的长度
-                 // 3. 所有数据的总的条数
-                 data.pageTotal = data.rows.length;
-                 // 4. pageCount是总的页码数 = 总条数 / 每页大小  向上取整
-                 var arr = [];
-                 // 第一个了一个按钮起点  当前页面开始
-                 var pageMin = page;
-                 // 按钮终点  默认为1
-                 var pageMax = 5;
-                 if(Math.ceil(data.total / data.size)> 5)
-                 {
-                    //如果总页码数大于5  当前最大终点为起点+5  比如总页码数有15条 当前点到第五5  第5-10页的数据
-                    pageMax = pageMin+5;
-                 }
-                 for (var i = page; i <= pageMax; i++) {
-                     arr.push(i);
-                 }
-                 data.pageCount = arr;//[1,2]
-                 console.log(data);
-                 var html1 = template('pagingTmp',data);
-                 $('.paging').html(html1);
-                // 2. 调用用户模板生成html
-                var html = template('userTmp', data);
-                $('.table-user tbody').html(html);
+                const html = template("uesrTmp",data);
+                // 查询的时候获取到了data数据传递给分页函数
+                $('.user-info tbody').html(html);
+                that.page(data);
             }
         })
     },
-    //分页跳转的函数
-    getPage:function () {
-      // 1. 给点击上一页添加事件
-      // $('#main').on('click','.prev',function () {
-      //     // 2. 获取当前要跳转到的上一页的页码数
-      //     page = $(this).data('page');
-      //     letao.queryUser();
-      // });
-      // // 1. 给点击下一页添加事件
-      // $('#main').on('click','.next',function () {
-      //     // 2. 获取当前要跳转到的上一页的页码数
-      //     page = $(this).data('page');
-      //     letao.queryUser();
-      // });
-      // // 1. 给每一页的按钮添加点击事件
-      // $('#main').on('click','.page',function () {
-      //     //2. 获取当前点击的每一页的页码数
-      //     page = $(this).data('page');
-      //     letao.queryUser();
-      // })
-      //给所有上一页 第几页 下一页按钮添加点击事件
-      $('#main').on('click','.pagination a',function () {
-            //获取当前要跳转到的页码数
-           page = $(this).data('page');
-           //调用查询方法
-          letao.queryUser();
-      })
-    },
-    //用户启用禁用操作
-    userOption: function() {
-        $('#main').on('click', '.btn-option', function() {
-            //2.获取当前要修改的用户的isDelete值 和id
-            var isDelete = $(this).data('is-delete');
-            var id = $(this).data('id');
-            //3. 判断当前isDelete 如果为0禁用 改成1启用 如果为1启用 改成0禁用
-            if (isDelete == 0) {
-                isDelete = 1;
-            } else {
+    // 用户禁用启用操作
+    userOption: function () {
+        const that = this;
+        // 1. 给所有禁用启用按钮添加事件
+        $(".user-info tbody").on("tap",".btn-option",function(){
+            // 2. 获取当前用户的id状态
+            const id = $("this").data("id");
+            const isDelete = $("this").data("id-delete");
+            // 3. 判断当前的状态 如果你是禁用的0 点击了后变成启用1
+            if(isDelete){
                 isDelete = 0;
+                $(this).removeClass().addClass("btn btn-danger btn-option");
+            }else {
+                isDelete = 1;
+                $(this).removeClass().addClass("btn btn-success btn-option");
             }
-            // 4. 调用更新用户的API更新用户的状态
+            // 4. 更新页面的状态
+            $(this).attr("data-is-delete",isDelete);
+            // 5. 调用API改变用户状态
             $.ajax({
-                url: '/user/updateUser',
-                data: { 'id': id, 'isDelete': isDelete },
-                type: 'post',
-                success: function(data) {
-                    if(data.success){
-                        //更新生成就刷新列表
-                         letao.queryUser();
-                    }else{
-                        //如果失败表示未登录就去登录
-                        window.location.href = 'login.html';
-                    }
+                url: "/user/updateUser",
+                type: "post",
+                data: {id: id,isDelete: isDelete},
+                success: function (data) {
+                    // 6. 更新完毕后 重新渲染页面
+                    that.queryUser(1,2);
                 }
-            });
+            })
         });
+    },
+    // 分页函数
+    page: function(data){
+        console.log(1);
+        // 1. 接收参数获取到实现分页的术
+        // 2. 创建一个总页数
+        data.pageCount = Math.ceil(data.total / data.size);
+        var arr = [];
+        for(let i =1;i<= data.pageCount;i++){
+            arr.push(i);
+        }
+        data.pageCount = arr;
+        const html = template("pageTmp",data);
+        $(".page").html(html);
+    },
+    // 点击了切换到某页
+    goToPage: function(){
+        const that = this;
+        // 使用委托的方式添加事件 千万不要加很多次
+        $('page').on("click","pagination li a",function(){
+            // 1. 获取当前点击要切换到的页面
+            const page = $(this).data("page");
+            // 2. 获取当前最大页
+            const pageCount = $(this).data("pageCount");
+            // 3. 判断当前要跳转到的数据小于第一页 或者 大于最后一页 默认第一和最后一页
+            // if(page <= 1){
+            //     page = 1;
+            // }
+            // if(page >= pageCount){
+            //     page = pageCount;
+            // }
+            that.queryUser(page,2);
+        })
     }
 }

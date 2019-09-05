@@ -3,48 +3,55 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>我的乐淘后台管理登录</title>
-    <!-- 1. 引入bootstrap的css文件 -->
-    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
-    <!-- 2. 引入字体图标的css文件 -->
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
-    <!-- 3. 引入登录页面的less文件 -->
-    <link rel="stylesheet/less" href="less/login.less">
-    <!-- 4. 引入less的编译器文件 less.js -->
-    <script src="lib/less/less.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Letao-后台登录</title>
+    <!-- 1. 先引入第三方的包 如果没有依赖关系第三包的顺序任意
+    2. 如果有依赖关系 就要先引入依赖的第三方包例如jquery再引入不依赖的bootstrap.js
+    3. 最后引完第三方的包再引入自己写的包
+    4. CSS 统一放到head标签里面
+    5. js文件统一放到body结束标签上面
+    6. 但是有些对页面渲染有影响的js文件例如less.js 或者rem等放到head -->
+    <!-- 1. 引入字体图标 -->
+    <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.css">
+    <!-- 2. 引入bootstrap的css文件 -->
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+    <!-- 3. 引入登陆的less文件 -->
+    <link rel="stylesheet/less" href="./less/login.less">
+    <!-- 4. 引入less.js编译器文件 -->
+    <script src="./lib/less/less.js"></script>
 </head>
 
 <body>
-    <section id="login">
-        <img class="logo" src="images/monkey.png" alt="">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">用户名:</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control username" id="inputEmail3" placeholder="用户名">
-                </div>
+
+    <form class="form-horizontal" id="login-form">
+        <div class="avatar">
+            <img src="./images/monkey.png" alt="" class="img-circle">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+            <input type="text" class="form-control username" placeholder="用户名" aria-describedby="sizing-addon1">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-key"></i></span>
+            <input type="password" class="form-control password" placeholder="密码" aria-describedby="sizing-addon1">
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <!-- 注意把按钮改成普通按钮 -->
+                <button type="button" class="btn btn-primary btn-login">登录</button>
             </div>
-            <div class="form-group">
-                <label for="inputPassword3" class="col-sm-3 control-label">密码:</label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control password" id="inputPassword3" placeholder="密码">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class=" col-sm-12">
-                    <button type="button" class="btn btn-primary btn-login" data-toggle="popover" title="温馨提示！" data-placement="bottom" data-content="">登录</button>
-                </div>
-            </div>
-        </form>
-    </section>
-    <!-- 5. 引入jquery 因为Bootstrap依赖jquery -->
-    <script src="lib/jquery/jquery.js"></script>
-    <!-- 6. 引入bootstrap js文件 -->
-    <script src="lib/bootstrap/js/bootstrap.js"></script>
-    <!-- 7. 引入模板引擎的js文件 -->
-    <script src="lib/artTemplate/template.js"></script>
-    <!-- 8. 引入登录页面的js文件 -->
-    <script src="js/login.js"></script>
+        </div>
+    </form>
+
+    <!-- 5. 引入模板引擎 -->
+    <script src=" ./lib/artTemplate/template-web.js"> </script>
+    <!-- 6. 引入jquery -->
+    <script src="./lib/jquery/jquery.js"></script>
+    <!-- 7. 引入bootstrap.js 依赖jquery -->
+    <script src="./lib/bootstrap/js/bootstrap.js"></script>
+    <!-- 8. 引入登录的js文件 -->
+    <script src="./js/login.js"></script>
 </body>
 
 </html>

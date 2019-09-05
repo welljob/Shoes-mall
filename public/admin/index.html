@@ -3,166 +3,197 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>我的乐淘后台管理主页</title>
-    <!-- 1. 引入bootstrap的css文件 -->
-    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
-    <!-- 2. 引入字体图标的css文件 -->
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
-    <!-- 3. 引入登录页面的less文件 -->
-    <link rel="stylesheet/less" href="less/index.less">
-    <!-- 4. 引入less的编译器文件 less.js -->
-    <script src="lib/less/less.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Letao-后台主页</title>
+    <!-- 1. 先引入第三方的包 如果没有依赖关系第三包的顺序任意
+    2. 如果有依赖关系 就要先引入依赖的第三方包例如jquery再引入不依赖的bootstrap.js
+    3. 最后引完第三方的包再引入自己写的包
+    4. CSS 统一放到head标签里面
+    5. js文件统一放到body结束标签上面
+    6. 但是有些对页面渲染有影响的js文件例如less.js 或者rem等放到head -->
+    <!-- 1. 引入字体图标 -->
+    <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.css">
+    <!-- 2. 引入bootstrap的css文件 -->
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+    <!-- 3. 引入登陆的less文件 -->
+    <link rel="stylesheet/less" href="./less/index.less">
+    <!-- 4. 引入less.js编译器文件 -->
+    <script src="./lib/less/less.js"></script>
 </head>
 
 <body>
+
+    <!-- 首页的主体内容 -->
     <main id="main">
-        <div class="row">
-            <div class="col-xs-2">
-                <div class="left">
-                    <div class="logo">
-                        <img src="./images/my_logo.jpg" alt="">
-                        <p>张学友</p>
-                    </div>
-                    <div class="menu">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <a href="index.html">
-                                    用户管理
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <!-- data-toggle="collapse" 表示当前是折叠菜单插件 -->
-                                <!-- href 是控制要切换的元素的id -->
-                                <!-- aria-expanded="true" aria-controls="collapseOne" 盲人设备失败的内容 -->
-                                <!-- 切换的内容只需要指定一个id和  a的href一致即可 -->
-                                <a data-toggle="collapse" href="#collapseOne">分类管理</a>
-                                <ul class="list-group category-children" id="collapseOne">
-                                    <li class="list-group-item"><a href="categoryFirst.html">一级分类</a></li>
-                                    <li class="list-group-item"><a href="cateogorySecond.html">二级分类</a></li>
-                                </ul>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">商品管理</a>
-                            </li>
-                        </ul>
-                    </div>
+        <div class="left">
+            <div class="title">
+                <img src="./images/1.png" alt="">
+                <p>管理员</p>
+            </div>
+            <div class="content">
+                <div class="list-group">
+                    <a href="index.html" class="list-group-item active">
+                        <i class="fa fa-user"></i> 用户管理
+                    </a>
+                </div>
+                <!-- 注意a标签不能包含a标签 -->
+                <!-- data-toggle="collapse" data-target="#collapseExample"
+                手风琴菜单效果 -->
+                <div class="list-group category-manage" data-toggle="collapse" data-target="#collapseExample">
+                    <a href="#" class="list-group-item">分类管理</a>
+                </div>
+                <div class="list-group collapse" id="collapseExample">
+                    <a href="firstCategory.html" class="list-group-item">一级分类管理</a>
+                    <a href="secondCategory.html" class="list-group-item">二级分类管理</a>
+                </div>
+                <div class="list-group">
+                    <a href="productManage.html" class="list-group-item">商品管理</a>
                 </div>
             </div>
-            <div class="col-xs-10">
-                <div class="right">
-                    <header id="header" class="clearfix">
-                        <a href="#" class="pull-left fa fa-navicon">
-                        </a>
-                        <a href="#" class="pull-right fa fa-sign-out"><span>退出</span></a>
-                    </header>
-                    <section id="content">
-                        <div class="info">
-                            <!-- 带边框和鼠标悬停的表格 -->
-                            <table class="table table-bordered table-hover table-user">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>用户名</th>
-                                        <th>电话</th>
-                                        <th>状态</th>
-                                        <th>操作</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">
-                                            <input type="checkbox">
-                                        </th>
-                                        <td>itcast</td>
-                                        <td>15102324243</td>
-                                        <td>已启用</td>
-                                        <td>
-                                            <button class="btn btn-danger">禁用</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <input type="checkbox">
-                                        </th>
-                                        <td>itcast</td>
-                                        <td>15102324243</td>
-                                        <td>已禁用</td>
-                                        <td>
-                                            <button class="btn btn-success">启用</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <!-- 分页容器 -->
-                            <div class="paging clearfix">
-                               
-                            </div>
+        </div>
+        <div class="right">
+            <!-- 右侧标题头部 -->
+            <div class="title clearfix">
+                <a href="#" class="pull-left">
+                    <i class="fa fa-navicon"></i>
+                </a>
+                <a href="#" class="pull-right">
+                    <i class="fa fa-sign-out"></i>
+                    <span>退出</span>
+                </a>
+            </div>
+            <!-- 右侧内容 -->
+            <div class="content">
+                <!-- 右侧内容 -->
+                <div class="content-body">
+                    <table class="table table-bordered table-hover user-info">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>用户名</th>
+                                <th>电话</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <input type="checkbox">
+                                </th>
+                                <td>itcast</td>
+                                <td>15102324243</td>
+                                <td>已启用</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger">禁用</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <input type="checkbox">
+                                </th>
+                                <td>itcast</td>
+                                <td>15102324243</td>
+                                <td>已启用</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger">禁用</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <input type="checkbox">
+                                </th>
+                                <td>itcast</td>
+                                <td>15102324243</td>
+                                <td>已启用</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger">禁用</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="page clearfix">
+                        <div class="pull-left">
+                            <p>显示第 1 到第 7 条记录，总共 7 条记录</p>
                         </div>
-                    </section>
+                        <div class="pull-right">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-    <!-- isDelete为0表示已禁用  为1 表示已启用   判断如果为false表示值为0返回后面的已禁用
-                为true表示值为1返回前面的值 已启用 -->
-    <script id="userTmp" type='text/html'>
-        {{each rows as value i}}
+    <script type="text/html" id="uesrTmp">
+        {{each rows}}
         <tr>
             <th scope="row">
                 <input type="checkbox">
             </th>
-            <td>{{value.username}}</td>
-            <td>{{value.mobile}}</td>
-            <!-- <td>{{value.isDelete ? '已启用' : '已禁用'}}</td>
-                <td>{{#value.isDelete ? '<button class="btn btn-danger btn-option" data-is-delete="1">禁用</button>' : '<button data-is-delete="0" class="btn btn-success btn-option">启用</button>'}}</td> -->
-            {{if value.isDelete == 0}}
-            <td>已禁用</td>
+            <td>{{$value.username}}</td>
+            <td>{{$value.mobile}}</td>
             <td>
-                <button class="btn btn-success btn-option" data-is-delete={{value.isDelete}} data-id="{{value.id}}">启用</button>
+                {{$value.isDelete ? "已启用" : "已禁用"}}
             </td>
-            {{else}}
-            <td>已启用</td>
             <td>
-                <button class="btn btn-danger btn-option" data-is-delete={{value.isDelete}} data-id="{{value.id}}">禁用</button>
+                {{if $value}}
+                    <button type="button" class="btn btn-danger btn-option" data-id="{{$value.id}}" data-is-delete="{{$value.isDelete}}">禁用</button>
+                {{else}}
+                    <button type="button" class="btn btn-success btn-option" data-id="{{$value.id}}" data-is-delete="{{$value.isDelete}}">启用</button>
+                {{/if}}
             </td>
-            {{/if}}
         </tr>
         {{/each}}
     </script>
-   <!--  上一页是要回到当前页的上一页 比如当前是第二页 上一页第一页 page--
-    但是如果page == 1  1--  == 0  页数最少是1 当前页不大于1 就默认为1 如果大于1就使用page--
-    下一页是要跳到当前页面的下一页 比如当前第二个 page++ 第三页
-    但是如果总页面数只有2  判断当前页已经到达了总页码数 跳到当前页 如果小于总页数page++ -->
-    <script id="pagingTmp" type="text/html">
-         <div class="pull-left">
-            显示第 {{page}} 页的 {{pageTotal}} 条记录，总共 {{total}} 条记录
-        </div>
-        <nav class="pull-right">
-            <ul class="pagination">
-                <li>
-                    <a href="#" class="prev" data-page="{{page > 1 ? --page : 1}}">
-                        <span>&laquo;</span>
-                    </a>
-                </li>
-                {{each pageCount as value i}}
-                    <li><a href="#" class="page" data-page="{{value}}">{{value}}</a></li>
-                {{/each}}
-                <li>
-                    <a href="#" class="next" data-page="{{page >= pageCount.length ? pageCount.length : ++page}}">
-                        <span>&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    <script type="text/html" id="pageTmp">
+        <div class="pull-left">
+                <p>显示第 {{(page - 1) * size + 1}} 到第 {{page * size > total ? total : page*size}} 条记录，总共 {{total}} 条记录</p>
+            </div>
+            <div class="pull-right">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous" data-page="{{page <= 1 ? page : page -1}}" data-pageCount="{{pageCount.length}}">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {{each pageCount}}
+                        <li><a href="#" class="{{$value === page ? active : ''}}" data-page="{{$value}}" data-pageCount="{{pageCount.length}}">{{$value}}</a></li>
+                        {{/each}}
+                        <li>
+                            <a href="#" aria-label="Next" data-page="{{page == pageCount.length ? page : page + 1}}" data-pageCount="{{pageCount.length}}">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+            </div>
     </script>
-    <!-- 5. 引入jquery 因为Bootstrap依赖jquery -->
-    <script src="lib/jquery/jquery.js"></script>
-    <!-- 6. 引入bootstrap js文件 -->
-    <script src="lib/bootstrap/js/bootstrap.js"></script>
-    <!-- 7. 引入模板引擎的js文件 -->
-    <script src="lib/artTemplate/template.js"></script>
-    <!-- 8. 引入登录页面的js文件 -->
-    <script src="js/index.js"></script>
+    <!-- 5. 引入模板引擎 -->
+    <script src=" ./lib/artTemplate/template-web.js"> </script>
+    <!-- 6. 引入jquery -->
+    <script src="./lib/jquery/jquery.js"></script>
+    <!-- 7. 引入bootstrap.js 依赖jquery -->
+    <script src="./lib/bootstrap/js/bootstrap.js"></script>
+    <!-- 8. 引入登录的js文件 -->
+    <script src="./js/index.js"></script>
 </body>
 
 </html>
